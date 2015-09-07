@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>eklavya_gazebo</name>
+  <name>eklavya_gazebo_plugins</name>
   <version>0.0.1</version>
-  <description>The eklavya5_gazebo package</description>
+  <description>The eklavya_gazebo_plugins package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but mutiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://ros.org/wiki/eklavya_gazebo</url> -->
+  <!-- <url type="website">http://ros.org/wiki/eklavya_gazebo_plugins</url> -->
 
 
   <!-- Author tags are optional, mutiple are allowed, one per tag -->
@@ -40,9 +40,20 @@
   <!-- Use test_depend for packages you need only for testing: -->
   <!--   <test_depend>gtest</test_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>gazebo</build_depend>
+  <build_depend>gazebo_ros</build_depend>
+  <build_depend>gazebo_plugins</build_depend>
+  <build_depend>gazebo_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>gazebo</run_depend>
   <run_depend>gazebo_ros</run_depend>
-  <run_depend>eklavya5_description</run_depend>
-  <run_depend>robot_pose_ekf</run_depend>
+  <run_depend>gazebo_plugins</run_depend>
+  <run_depend>gazebo_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
@@ -51,11 +62,6 @@
     <!-- <metapackage/> -->
 
     <!-- Other tools can request additional information be placed here -->
-    <gazebo_ros 
-      gazebo_model_path="${prefix}/models" 
-      gazebo_resource_path="${prefix}" 
-      gazebo_media_path="${prefix}"
-      />
-     
+    <!--gazebo_ros plugin_path="${prefix}/lib" /-->
   </export>
 </package>
