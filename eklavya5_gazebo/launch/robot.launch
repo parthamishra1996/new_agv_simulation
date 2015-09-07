@@ -2,13 +2,17 @@
 
 
  <launch>
-   <arg name="model" default="$(find eklavya5_description)/robots/chasisss.urdf"/>
+   <arg name="model" default="$(find eklavya5_description)/robots/chasisss.urdf.xacro"/>
    <arg name="x" default="0"/>
    <arg name="y" default="0"/>
    <arg name="z" default="0.2"/>
    <arg name="R" default="0"/>
    <arg name="P" default="0"/>
    <arg name="Y" default="90"/>
+
+<arg name="lat_ref" default="22.3210431"/>
+  <arg name="lon_ref" default="87.3112864"/>
+
    <!-- send the robot XML to param server -->
    <param name="robot_description" command="$(find xacro)/xacro.py '$(arg model)'" />
    
