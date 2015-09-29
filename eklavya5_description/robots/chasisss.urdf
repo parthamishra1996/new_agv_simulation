@@ -1,6 +1,18 @@
-<?xml version="1.0" ?>
-<robot
-  name="chasisss">
+<?xml version="1.0"?>
+
+<robot 
+  name="chasisss"
+  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+xmlns:xacro="http://ros.org/wiki/xacro"
+>
+
+<xacro:include filename="$(find eklavya5_description)/sensors/imu.urdf.xacro" />
+<xacro:include filename="$(find eklavya5_description)/sensors/gps.urdf.xacro" />
+ <property name="M_PI" value="3.1415926535897931" />
+
+
   <link
     name = "base_link">
   </link>
@@ -286,7 +298,7 @@
 
   <joint name="camera_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.025 0 0.5" rpy="0 0 0"/>
+    <origin xyz="0.05 0 0.5" rpy="0 0 0"/>
     <parent link="Steering"/>
     <child link="camera_link"/>
   </joint>
@@ -296,14 +308,14 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-    <box size="0.025 0.025 0.025"/>
+    <box size="0.05 0.05 0.05"/>
       </geometry>
     </collision>
 
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-<box size="0.025 0.025 0.025"/>
+<box size="0.05 0.05 0.05"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -354,14 +366,16 @@
       </plugin>
     </sensor>
   </gazebo>
-  <joint name="hokuyo_joint" type="fixed">
+
+<!-- Hokuyo Laser-->
+<joint name="hokuyo_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.05 0 0.4" rpy="0 0 0"/>
-    <parent link="Steering"/>
+    <origin xyz="-0.2 0 0.8" rpy="0 0 0"/>
+    <parent link="base_link"/>
     <child link="hokuyo_link"/>
   </joint>
 
-  <!-- Hokuyo Laser -->
+
   <link name="hokuyo_link">
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -419,5 +433,31 @@
       </plugin>
     </sensor>
   </gazebo>
+
+
+
+<!-- IMU-->
+    <sensor_imu parent="base_link" name="imu" colour="Blue" imu_px="-1" imu_py="0.0" imu_pz="0.8" imu_or="0.0" imu_op="${-M_PI/2.0}" imu_oy="0.0" />
+    <gazebo reference="imu_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    
+ 
+    <!-- GPS antenna/module -->
+    <sensor_gps parent="base_link" name="gps"
+          colour="White"
+          gps_px="-0.8" 
+          gps_py="0" 
+          gps_pz="0.8" 
+          gps_or="0.0" 
+          gps_op="0.0" 
+          gps_oy="${M_PI}" 
+          dimX="0.16" dimY="0.16" dimZ="0.14"
+          />
+    <gazebo reference="gps_link">
+        <material>Gazebo/White</material>
+    </gazebo>
+
   
 </robot>
